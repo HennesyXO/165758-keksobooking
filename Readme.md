@@ -1,7 +1,7 @@
 # Личный проект «Кексобукинг» [![Build status][travis-image]][travis-url] [![Dependency status][dependency-image]][dependency-url]
 
 * Студент: [Ирина С](https://up.htmlacademy.ru/javascript/8/user/165758).
-* Наставник: `Неизвестно`.
+* Наставник: [Антон Калин](https://htmlacademy.ru/profile/id38651).
 
 ---
 
