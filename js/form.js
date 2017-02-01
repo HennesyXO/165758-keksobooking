@@ -41,27 +41,55 @@ var noticePrice = document.querySelector('#price');
 noticePrice.required = true;
 noticePrice.min = 1000;
 noticePrice.max = 1000000;
-// if (noticePrice.value.parseInt) {
 
-// }
 // Адрес
 var noticeAddress = document.querySelector('#address');
 noticeAddress.required = true;
 // 4. Автоматическая корректировка полей в форме.
 // Поля «время заезда» и «время выезда» синхронизированы
-// var timeInSelect = document.querySelector('#time');
-// var timeIn = document.querySelector('#time').options;
-// // var timeOutSelect = document.querySelector('#timeout');
-// var timeOut = document.querySelector('#timeout').options;
+var timeIn = document.querySelector('#time');
+var timeOut = document.querySelector('#timeout');
+
+if (timeIn && timeOut) {
+  timeIn.addEventListener('change', function() {
+    timeOut.value = timeIn.value;
+  });
+
+  timeOut.addEventListener('change', function() {
+    timeIn.value = timeOut.value;
+  });
+}
 
 
-// timeOutSelect.addEventListener('change', function (e) {
-//   e.preventDefault();
-//   timeIn.options[timeOut.selectedIndex].selected = true;
-// });
-// timeInSelect.addEventListener('change', function () {
-//   // e.preventDefault();
-//   timeOut.options[timeIn.selectedIndex].selected = true;
-// });
 //  «Тип жилья» синхронизировано с минимальной ценой
+var apartType = document.querySelector('#type');
 
+if (apartType && noticePrice) {
+  apartType.addEventListener('change', function() {
+    switch (apartType.value) {
+      case 'appartment': noticePrice.min = 1000;
+      break;
+      case 'hovel': noticePrice.min = 0;
+      break;
+      case 'palace': noticePrice.min = 10000;
+      break;
+    }
+  });
+}
+
+var roomNumber = document.querySelector('#room_number');
+var roomCapacity = document.querySelector('#capacity');
+
+var isOneRoom = function () {
+  return noticeRoomNumber.value === '1';
+};
+
+if (roomNumber && roomCapacity) {
+  if (roomNumber.value === '1') {
+    roomCapacity.value = 0;
+  }
+
+  roomNumber.addEventListener('change', function () {
+    roomCapacity.value = (roomNumber.value === '1') ? 0 : 3;
+  });
+}
