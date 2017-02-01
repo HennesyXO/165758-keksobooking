@@ -14,8 +14,8 @@ var removeActivePin = function () {
 };
 
 if (pin) {
-  Array.prototype.forEach.call (pin, function (singlePin) {
-    singlePin.addEventListener ('click', function () {
+  Array.prototype.forEach.call(pin, function (singlePin) {
+    singlePin.addEventListener('click', function () {
       removeActivePin();
       singlePin.classList.add('pin--active');
       dialog.style.display = 'block';
@@ -51,11 +51,11 @@ var timeIn = document.querySelector('#time');
 var timeOut = document.querySelector('#timeout');
 
 if (timeIn && timeOut) {
-  timeIn.addEventListener('change', function() {
+  timeIn.addEventListener('change', function () {
     timeOut.value = timeIn.value;
   });
 
-  timeOut.addEventListener('change', function() {
+  timeOut.addEventListener('change', function () {
     timeIn.value = timeOut.value;
   });
 }
@@ -65,24 +65,20 @@ if (timeIn && timeOut) {
 var apartType = document.querySelector('#type');
 
 if (apartType && noticePrice) {
-  apartType.addEventListener('change', function() {
+  apartType.addEventListener('change', function () {
     switch (apartType.value) {
       case 'appartment': noticePrice.min = 1000;
-      break;
+        break;
       case 'hovel': noticePrice.min = 0;
-      break;
+        break;
       case 'palace': noticePrice.min = 10000;
-      break;
+        break;
     }
   });
 }
 
 var roomNumber = document.querySelector('#room_number');
 var roomCapacity = document.querySelector('#capacity');
-
-var isOneRoom = function () {
-  return noticeRoomNumber.value === '1';
-};
 
 if (roomNumber && roomCapacity) {
   if (roomNumber.value === '1') {
