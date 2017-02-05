@@ -12,15 +12,14 @@ function removeActivePin() {
   }
 }
 
-if (pin) {
-  Array.prototype.forEach.call(pin, function (singlePin) {
-    singlePin.addEventListener('click', function () {
-      removeActivePin();
-      singlePin.classList.add('pin--active');
-      dialog.style.display = 'block';
-    });
+Array.prototype.forEach.call(pin, function (singlePin) {
+  singlePin.addEventListener('click', function () {
+    removeActivePin();
+    singlePin.classList.add('pin--active');
+    dialog.style.display = 'block';
   });
-}
+});
+
 // 2. Закрытие карточки объявления
 function closeModal() {
   removeActivePin();
@@ -33,13 +32,13 @@ dialogClose.addEventListener('click', closeModal);
 // Заголовок объявления
 var noticeTitle = document.querySelector('#title');
 noticeTitle.required = true;
-noticeTitle.minLength = 30;
-noticeTitle.maxLength = 100;
+noticeTitle.min = 30;
+noticeTitle.max = 100;
 // Цена за ночь
 var noticePrice = document.querySelector('#price');
 noticePrice.required = true;
-noticePrice.minLength = 1000;
-noticePrice.maxLength = 1000000;
+noticePrice.min = 1000;
+noticePrice.max = 1000000;
 
 // Адрес
 var noticeAddress = document.querySelector('#address');
@@ -57,10 +56,8 @@ function connectOptionsBack() {
   timeIn.value = timeOut.value;
 }
 
-if (timeIn && timeOut) {
-  timeIn.addEventListener('change', connectOptions);
-  timeOut.addEventListener('change', connectOptionsBack);
-}
+timeIn.addEventListener('change', connectOptions);
+timeOut.addEventListener('change', connectOptionsBack);
 
 //  «Тип жилья» синхронизировано с минимальной ценой
 var apartType = document.querySelector('#type');
@@ -76,22 +73,15 @@ function switchPrice() {
   }
 }
 
-if (apartType && noticePrice) {
-  apartType.addEventListener('change', switchPrice);
-}
+apartType.addEventListener('change', switchPrice);
 
 var roomNumber = document.querySelector('#room_number');
 var roomCapacity = document.querySelector('#capacity');
 var oneRoom = roomNumber.value === '1';
-if (roomNumber && roomCapacity) {
-  if (oneRoom) {
-    roomCapacity.value = 0;
-  }
-}
+roomCapacity.value = 0;
 
 function switchRoomValue() {
   roomCapacity.value = (oneRoom) ? 0 : 3;
 }
 
 roomNumber.addEventListener('change', switchRoomValue);
-
