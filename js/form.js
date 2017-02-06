@@ -32,8 +32,8 @@ dialogClose.addEventListener('click', closeModal);
 // Заголовок объявления
 var noticeTitle = document.querySelector('#title');
 noticeTitle.required = true;
-noticeTitle.min = 30;
-noticeTitle.max = 100;
+noticeTitle.minLength = 30;
+noticeTitle.maxLength = 100;
 // Цена за ночь
 var noticePrice = document.querySelector('#price');
 noticePrice.required = true;
