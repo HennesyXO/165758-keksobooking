@@ -3,7 +3,7 @@
 var pin = document.querySelectorAll('.pin');
 var dialog = document.querySelector('.dialog');
 var dialogClose = dialog.querySelector('.dialog__close');
-
+var tokioMap = document.querySelector('.tokyo__pin-map');
 // удаляем оранжевый ободок у существующих классов
 function removeActivePin() {
   var actPin = document.querySelector('.pin--active');
@@ -12,22 +12,65 @@ function removeActivePin() {
   }
 }
 
+var ENTER_KEY_CODE = 13;
+var ESC_KEY_CODE = 27;
+
+// Array.prototype.forEach.call(pin, function (singlePin) {
+//   singlePin.addEventListener('click', function () {
+//     removeActivePin();
+//     singlePin.classList.add('pin--active');
+//     dialog.style.display = 'block';
+//   });
+// });
+
 Array.prototype.forEach.call(pin, function (singlePin) {
-  singlePin.addEventListener('click', function () {
+  singlePin.addEventListener('keydown', function (e) {
+    e.keycode === ENTER_KEY_CODE;
     removeActivePin();
     singlePin.classList.add('pin--active');
     dialog.style.display = 'block';
   });
 });
 
+  tokioMap.addEventListener('click', function(event) {
+    var clickedElement = event.target;
+
+    if (clickedElement.classList.contains('pin')) {
+
+      removeActivePin();
+      for (var i = 0; i < pin.length; i++) {
+        pin[i].classList.add('pin--active');
+      }
+      dialog.style.display = 'block';
+    }
+  });
+
+// Array.prototype.forEach.call(pin, function (singlePin) {
+//   tokioMap.addEventListener('click', function (event) {
+//     var target = event.target;
+
+//     if (!target.classList.contains('pin')) {
+//       return;
+//     }
+//     event.keycode === ENTER_KEY_CODE;
+//     removeActivePin();
+//     singlePin.classList.add('pin--active');
+//     dialog.style.display = 'block';
+//   });
+// });
+
+
+// =================================
+
 // 2. Закрытие карточки объявления
-function closeModal() {
+function closeModal(e) {
+  e.keycode === ESC_KEY_CODE;
   removeActivePin();
   dialog.style.display = 'none';
 }
 
 dialogClose.addEventListener('click', closeModal);
-
+dialogClose.addEventListener('keydown', closeModal);
 // 3. Проверка правильности введенных данных
 // Заголовок объявления
 var noticeTitle = document.querySelector('#title');
