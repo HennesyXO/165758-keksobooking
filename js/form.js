@@ -12,7 +12,6 @@ var roomNumber = document.querySelector('#room_number');
 var activePin = null;
 
 var ENTER_KEY_CODE = 13;
-var ESC_KEY_CODE = 27;
 
 tokioMap.addEventListener('click', onOpen);
 dialogClose.addEventListener('click', onClose);
@@ -60,7 +59,20 @@ function switchPrice() {
   }
 }
 
-function activaePin(pin) {
+// function activatePin(pin) {
+//   pin.classList.add('pin--active');
+//   pin.setAttribute('aria-pressed', 'true');
+//   activePin = pin;
+// }
+// function onOpen(event) {
+//   var target = event.target;
+//   if (!activePin) {
+//     return;
+//   }
+//   activePin(target);
+
+// }
+function activatePin(pin) {
   pin.classList.add('pin--active');
   pin.setAttribute('aria-pressed', 'true');
   activePin = pin;
@@ -88,7 +100,7 @@ function onOpen(event) {
   }
 
   deactivatePin();
-  activaePin(target);
+  activatePin(target);
   dialog.style.display = 'block';
 }
 
@@ -104,7 +116,7 @@ function onOpenByEnter(event) {
   }
 
   deactivatePin();
-  activaePin(target);
+  activatePin(target);
   dialog.style.display = 'block';
 }
 
