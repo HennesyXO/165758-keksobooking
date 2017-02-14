@@ -59,19 +59,6 @@ function switchPrice() {
   }
 }
 
-// function activatePin(pin) {
-//   pin.classList.add('pin--active');
-//   pin.setAttribute('aria-pressed', 'true');
-//   activePin = pin;
-// }
-// function onOpen(event) {
-//   var target = event.target;
-//   if (!activePin) {
-//     return;
-//   }
-//   activePin(target);
-
-// }
 function activatePin(pin) {
   pin.classList.add('pin--active');
   pin.setAttribute('aria-pressed', 'true');
