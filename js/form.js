@@ -1,27 +1,26 @@
 'use strict';
 
-// 1. Показ карточки объявления
-var pins = document.querySelectorAll('.pin');
-var dialog = document.querySelector('.dialog');
-var dialogClose = dialog.querySelector('.dialog__close');
-var tokioMap = document.querySelector('.tokyo__pin-map');
 var timeIn = document.querySelector('#time');
 var timeOut = document.querySelector('#timeout');
 var roomNumber = document.querySelector('#room_number');
 
-var activePin = null;
+/** @constant {Array.<string>} */
+var VALUES_TIME_IN_FIELD = ['12', '13', '14'];
+var VALUES_TIME_OUT_FIELD = ['12', '13', '14'];
 
-var ENTER_KEY_CODE = 13;
+var VALUES_ACCOMODATION_FIELD = ['apartment', 'shack', 'palace'];
+var VALUES_MIN_PRICE_FIELD = ['1000', '0', '10000'];
 
-tokioMap.addEventListener('click', onOpen);
-dialogClose.addEventListener('click', onClose);
+var VALUES_ROOM_FIELD = ['1', '2', '100'];
+var VALUES_CAPACITY_FIELD = ['0', '3', '3'];
+
+window.synchronizeFields(timeIn, timeOut, VALUES_TIME_IN_FIELD, VALUES_TIME_OUT_FIELD, 'value');
+window.synchronizeFields(apartType, noticePrice, VALUES_ACCOMODATION_FIELD, VALUES_MIN_PRICE_FIELD, 'min');
+window.synchronizeFields(roomNumber, roomCapacity, VALUES_ROOM_FIELD, VALUES_CAPACITY_FIELD, 'value');
+
 timeIn.addEventListener('change', onConnectOptions);
 timeOut.addEventListener('change', onConnectOptionsBack);
 roomNumber.addEventListener('change', onSwitchRoomValue);
-
-for (var i = 0; i < pins.length; i++) {
-  pins[i].addEventListener('keydown', onOpenByEnter);
-}
 
 // 3. Проверка правильности введенных данных
 // Заголовок объявления
@@ -59,60 +58,6 @@ function switchPrice() {
   }
 }
 
-function activatePin(pin) {
-  pin.classList.add('pin--active');
-  pin.setAttribute('aria-pressed', 'true');
-  activePin = pin;
-}
-
-function deactivatePin() {
-  if (!activePin) {
-    return;
-  }
-
-  activePin.classList.remove('pin--active');
-  activePin.setAttribute('aria-pressed', 'false');
-  activePin = null;
-}
-
-function onOpen(event) {
-  var target = event.target;
-
-  if (target.tagName === 'IMG') {
-    target = target.parentNode;
-  }
-
-  if (!target.classList.contains('pin')) {
-    return;
-  }
-
-  deactivatePin();
-  activatePin(target);
-  dialog.style.display = 'block';
-}
-
-function onOpenByEnter(event) {
-  var target = event.target;
-
-  if (event.keyCode !== ENTER_KEY_CODE) {
-    return;
-  }
-
-  if (!target.classList.contains('pin')) {
-    return;
-  }
-
-  deactivatePin();
-  activatePin(target);
-  dialog.style.display = 'block';
-}
-
-function onClose(event) {
-  event.preventDefault();
-  deactivatePin();
-  dialog.style.display = 'none';
-}
-
 function onConnectOptions() {
   timeOut.value = timeIn.value;
 }
@@ -124,3 +69,5 @@ function onConnectOptionsBack() {
 function onSwitchRoomValue() {
   roomCapacity.value = (oneRoom) ? 0 : 3;
 }
+
+window.initializePins();
