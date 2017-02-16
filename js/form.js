@@ -5,6 +5,7 @@ var timeOut = document.querySelector('#timeout');
 var roomNumber = document.querySelector('#room_number');
 var apartType = document.querySelector('#type');
 var roomCapacity = document.querySelector('#capacity');
+var noticePrice = document.querySelector('#price');
 
 /** @constant {Array.<string>} */
 var VALUES_TIME_IN_FIELD = ['12', '13', '14'];
@@ -28,7 +29,6 @@ noticeTitle.minLength = 30;
 noticeTitle.maxLength = 100;
 
 // Цена за ночь
-var noticePrice = document.querySelector('#price');
 noticePrice.required = true;
 noticePrice.min = 1000;
 noticePrice.max = 1000000;
