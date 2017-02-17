@@ -35,7 +35,7 @@ noticeAddress.required = true;
 
 window.synchronizeFields(timeIn, timeOut, VALUES_TIME_IN_FIELD, VALUES_TIME_OUT_FIELD, 'value');
 window.synchronizeFields(timeOut, timeIn, VALUES_TIME_IN_FIELD, VALUES_TIME_OUT_FIELD, 'value');
-window.synchronizeFields(apartType, noticePrice, VALUES_ACCOMODATION_FIELD, VALUES_MIN_PRICE_FIELD, 'value');
+window.synchronizeFields(apartType, noticePrice, VALUES_ACCOMODATION_FIELD, VALUES_MIN_PRICE_FIELD, 'min');
 window.synchronizeFields(roomNumber, roomCapacity, VALUES_ROOM_FIELD, VALUES_CAPACITY_FIELD, 'value');
 window.synchronizeFields(roomCapacity, roomNumber, VALUES_CAPACITY_FIELD, VALUES_ROOM_FIELD, 'value');
 
