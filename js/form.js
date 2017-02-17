@@ -17,10 +17,6 @@ var VALUES_MIN_PRICE_FIELD = ['1000', '0', '10000'];
 var VALUES_ROOM_FIELD = ['1', '2', '100'];
 var VALUES_CAPACITY_FIELD = ['0', '3', '3'];
 
-window.synchronizeFields(timeIn, timeOut, VALUES_TIME_IN_FIELD, VALUES_TIME_OUT_FIELD, 'value');
-window.synchronizeFields(apartType, noticePrice, VALUES_ACCOMODATION_FIELD, VALUES_MIN_PRICE_FIELD, 'value');
-window.synchronizeFields(roomNumber, roomCapacity, VALUES_ROOM_FIELD, VALUES_CAPACITY_FIELD, 'value');
-window.initializePins();
 // 3. Проверка правильности введенных данных
 // Заголовок объявления
 var noticeTitle = document.querySelector('#title');
@@ -37,4 +33,10 @@ noticePrice.max = 1000000;
 var noticeAddress = document.querySelector('#address');
 noticeAddress.required = true;
 
+window.synchronizeFields(timeIn, timeOut, VALUES_TIME_IN_FIELD, VALUES_TIME_OUT_FIELD, 'value');
+window.synchronizeFields(timeOut, timeIn, VALUES_TIME_IN_FIELD, VALUES_TIME_OUT_FIELD, 'value');
+window.synchronizeFields(apartType, noticePrice, VALUES_ACCOMODATION_FIELD, VALUES_MIN_PRICE_FIELD, 'value');
+window.synchronizeFields(roomNumber, roomCapacity, VALUES_ROOM_FIELD, VALUES_CAPACITY_FIELD, 'value');
+window.synchronizeFields(roomCapacity, roomNumber, VALUES_CAPACITY_FIELD, VALUES_ROOM_FIELD, 'value');
 
+window.initializePins();
