@@ -1,6 +1,6 @@
 'use strict';
 
-window.initializePins = function () {
+window.initializePins = (function () {
   var pins = document.querySelectorAll('.pin');
   var dialog = document.querySelector('.dialog');
   var dialogClose = dialog.querySelector('.dialog__close');
@@ -68,4 +68,4 @@ window.initializePins = function () {
     deactivatePin();
     dialog.style.display = 'none';
   }
-};
+})();
