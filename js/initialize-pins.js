@@ -31,7 +31,7 @@ window.initializePins = (function () {
       activePin.setAttribute('aria-pressed', 'false');
       activePin = null;
     }
-  // return
+
     function onOpen(event) {
       var target = event.target;
 
@@ -45,9 +45,9 @@ window.initializePins = (function () {
 
       deactivatePin();
       activatePin(target);
-      dialog.style.display = 'block';
+      window.showCard(target);
     }
-  // return
+
     function onOpenByEnter(event) {
       var target = event.target;
 
@@ -71,3 +71,5 @@ window.initializePins = (function () {
     }
   };
 })();
+
+

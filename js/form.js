@@ -34,12 +34,18 @@
   var noticeAddress = document.querySelector('#address');
   noticeAddress.required = true;
 
+  function syncValues (element, value) {
+    element.value = value;
+  };
 
-  window.synchronizeFields(timeIn, timeOut, VALUES_TIME_IN_FIELD, VALUES_TIME_OUT_FIELD, 'value');
-  window.synchronizeFields(timeOut, timeIn, VALUES_TIME_IN_FIELD, VALUES_TIME_OUT_FIELD, 'value');
-  window.synchronizeFields(apartType, noticePrice, VALUES_ACCOMODATION_FIELD, VALUES_MIN_PRICE_FIELD, 'min');
-  window.synchronizeFields(roomNumber, roomCapacity, VALUES_ROOM_FIELD, VALUES_CAPACITY_FIELD, 'value');
-  window.synchronizeFields(roomCapacity, roomNumber, VALUES_CAPACITY_FIELD, VALUES_ROOM_FIELD, 'value');
+  function syncValueWithMin (element, value) {
+    element.min = value;
+  };
+
+  window.synchronizeFields(timeIn, timeOut, VALUES_TIME_IN_FIELD, VALUES_TIME_OUT_FIELD, syncValues);
+  window.synchronizeFields(timeOut, timeIn, VALUES_TIME_IN_FIELD, VALUES_TIME_OUT_FIELD, syncValues);
+  window.synchronizeFields(apartType, noticePrice, VALUES_ACCOMODATION_FIELD, VALUES_MIN_PRICE_FIELD, syncValueWithMin);
+  window.synchronizeFields(roomNumber, roomCapacity, VALUES_ROOM_FIELD, VALUES_CAPACITY_FIELD, syncValues);
 
   window.initializePins();
 })();
