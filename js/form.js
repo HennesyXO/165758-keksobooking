@@ -33,7 +33,7 @@
   var VALUES_CAPACITY_FIELD = ['0', '3', '3'];
   window.synchronizeFields(roomNumber, roomCapacity, VALUES_ROOM_FIELD, VALUES_CAPACITY_FIELD, syncValues);
 
-  window.initializePins (function (pin) {
+  window.initializePins(function (pin) {
     pin.focus();
   });
 
