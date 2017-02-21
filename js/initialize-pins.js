@@ -1,16 +1,18 @@
 'use strict';
 
 window.initializePins = (function () {
-  return function () {
+  return function (callback) {
     var pins = document.querySelectorAll('.pin');
     var dialog = document.querySelector('.dialog');
     var dialogClose = dialog.querySelector('.dialog__close');
     var tokioMap = document.querySelector('.tokyo__pin-map');
     var activePin = null;
+    var wasOpenByEnter = false;
     var ENTER_KEY_CODE = 13;
 
     tokioMap.addEventListener('click', onOpen);
     dialogClose.addEventListener('click', onClose);
+    dialogClose.addEventListener('keydown', onClose);
 
     for (var i = 0; i < pins.length; i++) {
       pins[i].addEventListener('keydown', onOpenByEnter);
@@ -45,7 +47,7 @@ window.initializePins = (function () {
 
       deactivatePin();
       activatePin(target);
-      window.showCard(target);
+      window.showCard();
     }
 
     function onOpenByEnter(event) {
@@ -61,15 +63,39 @@ window.initializePins = (function () {
 
       deactivatePin();
       activatePin(target);
-      dialog.style.display = 'block';
+      window.showCard();
+      wasOpenByEnter = true;
     }
-  // return
+
     function onClose(event) {
       event.preventDefault();
+      var target = event.target;
+
+      close();
+    }
+
+    function onCloseByEnter(event) {
+      var target = event.target;
+
+      if (event.keyCode !== ENTER_KEY_CODE) {
+        return;
+      }
+
+      if (!target.classList.contains('pin')) {
+        return;
+      }
+
+      close();
+    }
+
+    function close() {
+      if (typeof callback === 'function' && wasOpenByEnter) {
+        callback(activePin);
+        wasOpenByEnter = false;
+      }
+
       deactivatePin();
       dialog.style.display = 'none';
     }
   };
 })();
-
-

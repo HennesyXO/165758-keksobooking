@@ -2,10 +2,8 @@
 
 window.showCard = (function () {
   var dialog = document.querySelector('.dialog');
-  return function (event) {
-      var target = event.target;
 
+  return function () {
       dialog.style.display = 'block';
     };
-
 })();
