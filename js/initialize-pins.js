@@ -12,7 +12,7 @@ window.initializePins = (function () {
 
     tokioMap.addEventListener('click', onOpen);
     dialogClose.addEventListener('click', onClose);
-    dialogClose.addEventListener('keydown', onClose);
+    dialogClose.addEventListener('keydown', onCloseByEnter);
 
     for (var i = 0; i < pins.length; i++) {
       pins[i].addEventListener('keydown', onOpenByEnter);
@@ -69,8 +69,6 @@ window.initializePins = (function () {
 
     function onClose(event) {
       event.preventDefault();
-      var target = event.target;
-
       close();
     }
 
