@@ -95,5 +95,22 @@ window.initializePins = (function () {
       deactivatePin();
       dialog.style.display = 'none';
     }
-  };
+
+    var similarApartments = [];
+    var URL_LOAD = 'https://intensive-javascript-server-pedmyactpq.now.sh/keksobooking/data';
+
+    function onLoad(data) {
+      similarApartments = JSON.parse(data);
+      var newSimilarApartments = similarApartments.slice(0, 3);
+      var fragment = document.createDocumentFragment();
+
+      newSimilarApartments.forEach(function (item, index) {
+        fragment.appendChild(window.renderPin(item, index));
+      });
+
+      tokioMap.appendChild(fragment);
+
+    }
+    window.load(URL_LOAD, onLoad);
+   };
 })();
