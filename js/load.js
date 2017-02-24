@@ -3,6 +3,7 @@
 window.load = (function () {
   return function (url, onload) {
     var xhr = new XMLHttpRequest();
+    xhr.open('GET', url);
 
     xhr.addEventListener('load', function (event) {
       if (event.target.status >= 200) {
@@ -11,7 +12,7 @@ window.load = (function () {
     });
 
     xhr.responseType = 'json';
-    xhr.open('GET', 'url');
+
     xhr.send();
   };
 })();
