@@ -28,16 +28,17 @@ window.showCard = (function () {
     var photos = dialog.querySelector('.lodge__photos');
 
     var photosArray = card.offer.photos;
-
+    photos.innerHTML = '';
     photosArray.forEach(function (photosListItem) {
       var img = new Image(52, 52);
       img.src = photosListItem;
+
       photos.appendChild(img);
     });
 
     var features = dialog.querySelector('.lodge__features');
     var featuresArray = card.offer.features;
-
+    features.innerHTML = '';
     featuresArray.forEach(function (featuresListItem) {
       var feature = document.createElement('span');
       feature.classList.add('feature__image');

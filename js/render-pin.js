@@ -9,10 +9,6 @@ window.renderPin = (function () {
     HEIGHT: 75
   };
 
-//   document.body.appendChild(newElement);
-// newElement.addEventListener('click', function() {
-//   alert('Я умею работать с шаблонами');
-// });
   return function (item, index) {
     var newElement = elementToClone.cloneNode(true);
     // document.body.appendChild(newElement);
