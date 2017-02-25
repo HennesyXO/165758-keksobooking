@@ -18,6 +18,11 @@ window.initializePins = (function () {
       pins[i].addEventListener('keydown', onOpenByEnter);
     }
 
+    var similarApartments = [];
+    var URL_LOAD = 'https://intensive-javascript-server-pedmyactpq.now.sh/keksobooking/data';
+
+    window.load(URL_LOAD, onLoad);
+
     function activatePin(pin) {
       pin.classList.add('pin--active');
       pin.setAttribute('aria-pressed', 'true');
@@ -41,29 +46,17 @@ window.initializePins = (function () {
         target = target.parentNode;
       }
 
-      if (!target.classList.contains('pin')) {
-        return;
-      }
-
-      deactivatePin();
-      activatePin(target);
-      window.showCard();
+      open(target);
     }
 
     function onOpenByEnter(event) {
       var target = event.target;
 
-      if (event.keyCode !== ENTER_KEY_CODE) {
+      if (target.keyCode !== ENTER_KEY_CODE) {
         return;
       }
 
-      if (!target.classList.contains('pin')) {
-        return;
-      }
-
-      deactivatePin();
-      activatePin(target);
-      window.showCard();
+      open();
       wasOpenByEnter = true;
     }
 
@@ -86,6 +79,19 @@ window.initializePins = (function () {
       close();
     }
 
+    function open(element) {
+      if (!element.classList.contains('pin')) {
+        return;
+      }
+
+      deactivatePin();
+      activatePin(element);
+
+      var index = element.getAttribute('data-index');
+      var card = similarApartments[index];
+      window.showCard(card);
+    }
+
     function close() {
       if (typeof callback === 'function' && wasOpenByEnter) {
         callback(activePin);
@@ -94,6 +100,19 @@ window.initializePins = (function () {
 
       deactivatePin();
       dialog.style.display = 'none';
+    }
+
+    function onLoad(data) {
+      similarApartments = data;
+      var newSimilarApartments = similarApartments.slice(0, 3);
+      var fragment = document.createDocumentFragment();
+
+      newSimilarApartments.forEach(function (item, index) {
+        var element = window.renderPin(item, index);
+        fragment.appendChild(element);
+      });
+
+      tokioMap.appendChild(fragment);
     }
   };
 })();
