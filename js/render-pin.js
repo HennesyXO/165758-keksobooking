@@ -11,7 +11,6 @@ window.renderPin = (function () {
 
   return function (item, index) {
     var newElement = elementToClone.cloneNode(true);
-    // document.body.appendChild(newElement);
 
     newElement.style.left = SIZE.WIDTH / 2 + item.location.x + 'px';
     newElement.style.top = SIZE.HEIGHT / 2 + item.location.y + 'px';
