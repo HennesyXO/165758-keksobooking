@@ -25,7 +25,7 @@
   window.synchronizeFields(timeIn, timeOut, VALUES_TIME_IN_FIELD, VALUES_TIME_OUT_FIELD, syncValues);
   window.synchronizeFields(timeOut, timeIn, VALUES_TIME_IN_FIELD, VALUES_TIME_OUT_FIELD, syncValues);
 
-  var VALUES_ACCOMODATION_FIELD = ['apartment', 'hovel', 'palace'];
+  var VALUES_ACCOMODATION_FIELD = ['flat', 'bungalo', 'palace'];
   var VALUES_MIN_PRICE_FIELD = ['1000', '0', '10000'];
   window.synchronizeFields(apartType, noticePrice, VALUES_ACCOMODATION_FIELD, VALUES_MIN_PRICE_FIELD, syncValueWithMin);
 

@@ -19,7 +19,7 @@ window.renderPin = (function () {
     var image = newElement.querySelector('.rounded');
     image.src = item.author.avatar;
 
-    return newElement;
+
   };
 })();
 
