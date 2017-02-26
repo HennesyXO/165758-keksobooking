@@ -10,6 +10,10 @@ window.initializePins = (function () {
     var wasOpenByEnter = false;
     var ENTER_KEY_CODE = 13;
 
+    var filtersMapElement = document.querySelector('.tokyo__filters');
+    var apartments = [];
+    var filteredAppertments = [];
+
     tokioMap.addEventListener('click', onOpen);
     dialogClose.addEventListener('click', onClose);
     dialogClose.addEventListener('keydown', onCloseByEnter);
@@ -101,6 +105,28 @@ window.initializePins = (function () {
       deactivatePin();
       dialog.style.display = 'none';
     }
+
+    function clearPins() {
+      window.showCard(null, null, true);
+
+      for (i = 0; i < pins.length; i++) {
+        if (pins[i].dataset.index) {
+          pins[i].remove();
+        }
+      }
+    }
+
+  filtersMapElement.addEventListener('change', function () {
+    clearPins();
+    var fragment = document.createDocumentFragment();
+    apartments = similarApartments.slice(0);
+    filteredAppertments = window.filterPins(apartments);
+    filteredAppertments.forEach(function (item, index) {
+      fragment.appendChild(window.renderPins(item, index));
+    });
+
+    tokioMap.appendChild(fragment);
+  });
 
     function onLoad(data) {
       similarApartments = data;
