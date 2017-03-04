@@ -3,7 +3,6 @@
 window.filterPin = (function () {
   var formFilter = document.querySelector('.tokyo__filters');
   var utilities = formFilter.querySelectorAll('input[name="feature"]');
-
   var FILTER_ANY = 'any';
 
   var valuePrice = {
@@ -29,9 +28,7 @@ window.filterPin = (function () {
 
   function filterGuests(guests) {
     var guestsSelect = document.querySelector('#housing_guests-number');
-
     return guestsSelect.value === FILTER_ANY || guestsSelect.value === String(guests);
-
   }
 
   function filterAccomodation(type) {
@@ -39,13 +36,10 @@ window.filterPin = (function () {
     return AccomodationSelect.value === FILTER_ANY || AccomodationSelect.value === type;
   }
 
-
   function filterRooms(rooms) {
     var roomsSelect = document.querySelector('#housing_room-number');
-
     return roomsSelect.value === FILTER_ANY || roomsSelect.value === String(rooms);
   }
-
 
   function filterFeatures(feature) {
     var checkedFeatures = [];
@@ -60,9 +54,11 @@ window.filterPin = (function () {
   }
   return function (apartments) {
     return apartments.filter(function (apartmentsItem) {
-      return filterAccomodation(apartmentsItem.offer.type) && filterRooms(apartmentsItem.offer.rooms) && filterGuests(apartmentsItem.offer.guests) && filterPrice(apartmentsItem.offer.price) && filterFeatures(apartmentsItem.offer.features);
+      return filterAccomodation(apartmentsItem.offer.type) &&
+      filterRooms(apartmentsItem.offer.rooms) &&
+      filterGuests(apartmentsItem.offer.guests) &&
+      filterPrice(apartmentsItem.offer.price) &&
+      filterFeatures(apartmentsItem.offer.features);
     });
   };
-
-
 })();

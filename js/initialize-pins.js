@@ -107,7 +107,7 @@ window.initializePins = (function () {
     }
 
     function clearPins() {
-      window.showCard(null, null, true);
+      window.showCard(card);
 
       for (i = 0; i < pins.length; i++) {
         if (pins[i].dataset.index) {
@@ -116,17 +116,17 @@ window.initializePins = (function () {
       }
     }
 
-  filtersMapElement.addEventListener('change', function () {
-    clearPins();
-    var fragment = document.createDocumentFragment();
-    apartments = similarApartments.slice(0);
-    filteredAppertments = window.filterPins(apartments);
-    filteredAppertments.forEach(function (item, index) {
-      fragment.appendChild(window.renderPins(item, index));
-    });
+    filtersMapElement.addEventListener('change', function () {
+      clearPins();
+      var fragment = document.createDocumentFragment();
+      apartments = similarApartments.slice(0);
+      filteredAppertments = window.filterPin(apartments);
+      filteredAppertments.forEach(function (item, index) {
+        fragment.appendChild(window.renderPin(item, index));
+      });
 
-    tokioMap.appendChild(fragment);
-  });
+      tokioMap.appendChild(fragment);
+    });
 
     function onLoad(data) {
       similarApartments = data;
